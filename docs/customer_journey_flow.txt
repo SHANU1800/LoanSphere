@@ -1,0 +1,85 @@
+Complete Customer Journey Flow
+
+1) Login / Registration
+- User registers or logs in using email and password.
+- The app issues JWT tokens on successful login.
+- Supported roles include customer, agent, admin, underwriter, credit manager, finance, operations, and compliance officer.
+
+2) Customer onboarding
+- In the current implementation, agents or admins usually create the loan application.
+- Customer details collected:
+  - first name, last name
+  - phone number, email, date of birth, gender
+  - Aadhaar number, PAN number
+  - address details
+  - employment type and income details
+  - loan amount, tenure, interest rate, and loan purpose
+
+3) Draft application creation
+- The loan application is created first as a draft.
+- A unique applicant ID is generated automatically in the format:
+  - APP-YYYYMMDD-XXXX
+
+4) Submission
+- Once the draft is complete, the agent submits the application.
+- Status changes from draft to submitted.
+
+5) Review / underwriting
+- Authorized staff review the application.
+- Common review statuses include:
+  - under_review
+  - kyc_verified
+  - credit_checked
+
+6) KYC verification
+- Aadhaar verification is triggered.
+- PAN verification is triggered.
+- KYC records are stored for the application.
+- Credit bureau checks can also be triggered.
+
+7) Document handling
+- Documents can be uploaded, listed, verified, rejected, or requested again.
+- Supported document types include Aadhaar, PAN, address proof, income proof, customer photo, bank statement, salary slip, disbursal form, SLA document, fee receipt, and other.
+
+8) Credit check
+- A CIBIL or CRIF credit check is performed.
+- The score and bureau response are saved.
+
+9) Decision stage
+- Authorized users can approve or reject the application.
+- If approved:
+  - approval date is stored
+  - a loan account number is generated
+- If rejected:
+  - rejection reason is stored
+
+10) Sanction letter
+- After approval, the system can generate sanction letter data.
+- A PDF version is also available.
+- The letter includes applicant details, loan terms, EMI, total payable, and related banking information.
+
+11) Bank details and disbursal preparation
+- Bank account details are added or updated.
+- Fees can be recorded and reconciled.
+- Disbursal documents and SLA documents may be uploaded.
+- A disbursal checklist is used to confirm readiness.
+
+12) Disbursal ready
+- When everything is complete, the application status becomes disbursal_ready.
+
+13) Final disbursal
+- The final payout is processed.
+- Status changes to disbursed.
+- This completes the loan lifecycle.
+
+14) Reports and monitoring
+- The system also tracks dashboard statistics, application reports, fee reports, notification logs, and audit logs.
+- This provides traceability across the whole workflow.
+
+Status flow summary
+- draft -> submitted -> under_review -> kyc_verified -> credit_checked -> approved -> disbursal_ready -> disbursed
+- If the application fails review, it may move to rejected instead.
+
+Customer-facing note
+- The customer role exists and can view matching applications, upload documents, and receive notifications.
+- However, application creation is mainly agent/admin driven in the current implementation.

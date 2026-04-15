@@ -1,0 +1,649 @@
+Loan Application Proposal
+Client Mr. Imran
+Vendor/Service Provider Comfygen Technologies
+Prepared by Bhavika Gupta
+Date 11 Dec, 2025
+Version 1.0
+Estimated Cost ₹ (approximately)
+Estimated Timeline Months – Working Days (approximately)
+
+Important Note
+Project timeline and cost will commence only after formal confirmation and approval from the client that 
+the documented features and requirements fully meet their expectations.
+
+Proposal Disclaimer
+This document serves as an initial project proposal based on preliminary analysis and discussions. It outlines 
+the scope, technical architecture, and estimated costs but does not serve as the Functional Requirement
+Document (FRD).
+Upon signing the contract, we will conduct a detailed requirement analysis with the client and draft an in￾depth FRD that will include:
+ Comprehensive feature definitions.
+ Detailed UI/UX wireframes for each screen.
+ Specific user flows and system interactions.
+ Finalized scope of work with precise functionalities.
+If any feature, module, or requirement is missing in this proposal, it will be incorporated into the FRD after 
+a thorough requirement gathering phase. The final implementation will be aligned with the client’s business
+needs, ensuring complete functionality, scalability, and user experience enhancements
+1. Executive Summary
+The proposed LoanSphere is a comprehensive digital solution designed to streamline and 
+modernize agent-driven lending operations across Tier 1, Tier 2, and small-city markets. This platform 
+empowers field agents to digitally onboard customers, conduct KYC verification, perform CIBIL and CRIF 
+credit checks, collect required documents, capture non-refundable application fees, and submit loan applications 
+with accuracy and speed. The Admin Web Portal complements the agent app by offering full operational 
+control, underwriting capabilities, loan approval workflows, and compliance-ready audit systems.
+The solution eliminates traditional paper-based, manual, and error-prone processes by introducing a structured, 
+digital-first workflow that improves turnaround time and enhances data integrity. A key USP of the system is its
+agent-centric design, enabling agents to serve customers even in remote areas using a mobile app optimized 
+for low bandwidth, manual document uploads (without OCR), offline usage, and seamless synchronization.
+Once an application is reviewed and approved, the system automatically generates a Consent/Loan Sanction 
+Letter, which is shared with the customer via email or WhatsApp. The agent then meets the customer 
+physically to collect bank account details, disbursal forms, and SLA documentation—ensuring a compliant and 
+authenticated disbursal process. If a loan is rejected, the system sends a clear rejection notification to the 
+customer.
+The platform also includes an EMI calculator for agents, automated customer reminders 2–3 days before due 
+dates, offline non-refundable fee handling, and conversion of Applicant ID into a Loan Account Number
+once the loan is approved. These features collectively provide transparency, efficiency, and consistency across 
+the entire loan lifecycle.
+By adopting this solution, the client can expect significant business value, including:
+ Reduced processing time & improved accuracy through structured, guided workflows.
+ Higher agent productivity in the field with offline capabilities and simplified data entry.
+ Better credit decisioning with integrated CIBIL/CRIF score checks and underwriting tools.
+ Enhanced customer experience through quicker communication, status visibility, and timely 
+notifications.
+ Stronger compliance and audit readiness, including digital consent records, versioned documents, and 
+a robust approval trail.
+ Scalability for growth as lending expands across multiple geographies and customer segments.
+Ultimately, this platform positions the client as a modern, technology-enabled lender capable of delivering
+faster, safer, and more transparent credit services, while maintaining strict regulatory compliance and 
+operational efficiency. It creates a strong foundation for future enhancements such as online EMI payments, 
+automated disbursal, NACH/UPI mandate collections, and a customer-facing portal.
+
+1.2 Research Objectives
+The key objectives of the LoanSphere project are:
+•	To develop a scalable full-stack web application for institutional loan origination and management.
+•	To implement Role-Based Access Control (RBAC) for managing user permissions across different stakeholders including agents, loan officers, compliance teams, and administrators.
+•	To automate multi-stage approval workflows based on loan type, amount, and institutional hierarchy.
+•	To integrate Know Your Customer (KYC) verification processes, including document validation and regulatory compliance checks.
+•	To prevent duplicate applications and data inconsistencies through real-time conflict detection and intelligent validation.
+•	To apply priority-based mechanisms for efficient loan processing and resource allocation.
+•	To design a responsive and user-friendly interface accessible across devices for both field agents and administrative staff.
+•	To ensure system security using session-based authentication, CSRF protection, and encrypted data handling.
+•	To enable scalable and portable deployment using Docker and cloud-ready infrastructure.
+•	To provide comprehensive analytics for monitoring loan pipeline, processing metrics, compliance status, and resource utilization.
+•	To support offline functionality for field agents operating in low-connectivity environments.
+•	To automate customer communication through notifications, status updates, consent letters, and EMI reminders.
+
+1.3 Thesis Statement
+Efficient management of loan origination and approval processes remains a significant challenge in modern financial institutions, particularly those serving diverse market segments across urban and remote regions. Traditional manual systems relying on paper-based documentation, dispersed communication channels, and offline data entry are often inadequate in handling the complexity and scale of modern lending operations.
+
+This work proposes that a centralized digital LoanSphere incorporating role-based access control, automated multi-stage approval workflows, and integrated KYC verification can significantly reduce loan processing timelines, minimize documentation errors, and improve regulatory compliance. By standardizing workflows and enforcing structured approval hierarchies, the system enhances accountability and ensures consistent application of lending policies across all customer interactions.
+
+Furthermore, a secure, scalable, and mobile-first architecture that supports both online and offline operations enables the platform to serve financial institutions across diverse geographies, from metropolitan centers to remote markets. This adaptability, combined with comprehensive audit trails and real-time analytics, positions the platform as a robust, future-ready solution for modern loan origination that balances operational efficiency with regulatory rigor and customer-centric service delivery.
+
+2. Introduction
+2.1 Background / Problem Statement
+Many financial institutions, especially those operating across Tier 1, Tier 2, and small cities, continue to rely 
+heavily on manual, paper-based loan onboarding processes. Field agents collect customer information, KYC 
+documents, and income proofs physically, leading to operational inefficiencies, long turnaround times, missing 
+documents, and compliance risks. Manual verification of documents and offline fee collection add to financial 
+leakage and administrative burden.
+Additionally, lenders face challenges such as:
+ Inconsistent data quality and incomplete applications, causing delays.
+ Scattered communication between agents and back-office teams.
+ Limited visibility into real-time application progress.
+ Difficulty verifying identity and creditworthiness, especially for first-time borrowers.
+ Dependence on physical meetings for consent, disbursal forms, and bank account collection.
+ Operational friction in small and remote regions with low connectivity.
+ Lack of structured customer communication, including rejection notices and EMI reminders.
+These challenges restrict scalability, reduce agent productivity, and increase the risk of regulatory non￾compliance. A unified digital system is required to streamline the entire lifecycle—from agent onboarding to 
+loan approval, consent, and repayment reminders—while retaining the field-based workflow needed in smaller 
+markets.
+2.2 Objectives of the Project
+The primary objective is to build a complete digital LoanSphere that enhances operational 
+efficiency, ensures compliance, and improves customer experience—while remaining practical for on-ground 
+agent workflows.
+Core Objectives
+1. Digitize the Loan Application Process
+Enable agents to capture customer details, upload KYC documents, record fees, and submit applications 
+digitally—without relying on physical paperwork.
+2. Strengthen KYC & Credit Verification
+Integrate Aadhaar/PAN verification and CIBIL/CRIF checks to improve decision accuracy and reduce 
+risk.
+3. Streamline Underwriting & Loan Approvals
+Provide admins with a centralized review portal to verify documents, evaluate credit results, and 
+approve or reject applications efficiently.
+4. Enable Customer Consent & Disbursal Compliance
+Automate the generation of consent/sanction letters, facilitate physical customer meetings, and support 
+upload of disbursal forms, bank details, and SLA documentation.
+
+5. Improve Customer Communication
+Send automated notifications including Applicant ID, sanction letters, rejection messages, and EMI 
+reminders before due dates.
+6. Support Offline Fee Collection & Reconciliation
+Allow agents to record cash/branch deposits while enabling finance teams to reconcile fees against bank 
+statements.
+7. Ensure Scalability, Security & Compliance
+Implement secure data handling, audit trails, encryption, and regulatory compliance, ensuring readiness 
+for future expansion.
+2.3 Proposed Solution Overview
+The platform consists of two core components, powered by a centralized backend and seamless integrations.
+A. Agent Mobile Application (Android & iOS)
+A field agent–focused app that allows agents to:
+ Register/login securely (OTP or biometrics).
+ Capture customer information and upload required documents manually (no OCR).
+ Perform Aadhaar/PAN KYC verification and trigger CIBIL/CRIF credit checks.
+ Record non-refundable application fees (cash/branch deposit).
+ Submit loan applications and receive an Applicant ID instantly.
+ Receive notifications and respond to admin requests for more documents.
+ Review application status and updates.
+ Access a built-in EMI calculator.
+ After approval, meet customers to collect bank account details, signed disbursal forms, and SLA 
+documentation, then upload them digitally.
+This mobile app works in both online and offline environments, ensuring agents in remote locations can operate 
+without disruption.
+B. Admin Web Portal
+A powerful web-based system for internal teams enabling:
+ Review of all submitted applications and customer documents.
+ Manual verification of identity, income, and supporting files.
+ Viewing credit scores from CIBIL/CRIF and generating underwriting notes.
+ Approving or rejecting applications, with reasons and audit logs.
+ Automatic generation and customer delivery of Loan Sanction Letters.
+ Conversion of Applicant ID into a Loan Account Number upon approval.
+ Tracking and validating uploaded bank details, disbursal forms, and SLA documentation.
+ Managing agent accounts and performance metrics.
+ Reconciliation of non-refundable fees recorded by agents.
+ Sending customer notifications for approvals, rejections, and reminders.
+
+.
+C. Backend Services & Integrations
+The backend orchestrates all workflows including:
+ Customer KYC verification (Aadhaar/PAN).
+ CIBIL and CRIF credit score integrations with secure logging.
+ Fee recording and finance reconciliation tools.
+ PDF generation for consent/sanction letters.
+ Notification engine for SMS, Email, and WhatsApp messaging.
+ Automated reminder scheduler (2–3 days before customer EMI dates).
+ Secure document storage, audit logs, and role-based access.
+
+3. Project Scope
+3.1 In-Scope Activities
+A. Agent Mobile Application (Android & iOS)
+Fully functional Agent-only application with:
+1. Agent Authentication & Profile
+ OTP login, biometric login support, admin approval for new agents.
+ Profile management, device binding, logout, language preferences.
+2. Customer Loan Application Creation
+ Multi-step application form: customer basic info, contact, identity details, employment, income, loan 
+request.
+ Manual document uploads (Aadhaar, PAN, address proof, income proof, customer photos).
+ NO OCR — all fields manually entered/uploaded.
+ Draft creation & auto-save functionality.
+ Application submission to generate Applicant ID.
+3. KYC & Credit Verification
+ Aadhaar/PAN verification through integrated KYC provider.
+ CIBIL & CRIF credit score request initiation.
+ Display bureau score summary and status updates.
+4. Fee Collection (Offline)
+ Record non-refundable application fee collected via cash or branch deposit.
+ Upload receipt image, store metadata (amount, branch, date).
+ Fee sync & finance reconciliation.
+5. Approval & Consent Letter Flow
+ After admin approval, agent receives automated Loan Sanction Letter.
+ Notify customer via email/WhatsApp.
+6. Post-Approval Customer Meeting
+ Agent meets customer physically to:
+o Collect bank account details (account No., IFSC, account holder name).
+o Upload signed disbursal form.
+
+Upload SLA documentation.
+ Submit all final disbursal documents through the app.
+7. EMI Calculator
+ Built-in calculator for EMI, total payable, interest calculations.
+8. Application Tracking & Notifications
+ Real-time updates: Under Review, KYC Verified, Credit Completed, Approved, Rejected.
+ In-app notifications for document requests and status changes.
+9. Reminders
+ Automated reminders to customers 2–3 days before due dates (via SMS/WhatsApp/email).
+B. Admin Web Portal
+1. Admin Authentication & RBAC
+ Secure login, role-based access (Admin, Underwriter, Finance, Operations).
+2. Application Management
+ View and manage all applications (search, sort, filter).
+ Review customer details & documents.
+ Manual verification of all uploaded documents (no OCR).
+ Request additional documents or clarification from agents.
+3. Underwriting & Credit Evaluation
+ View CIBIL/CRIF results and scoring details.
+ Add underwriting notes, approve or reject applications.
+ Record rejection reasons and notify customer.
+4. Loan Approval & Disbursal Preparation
+ Convert Applicant ID → Loan Account Number.
+ Trigger automated Sanction Letter PDF generation & delivery.
+ Review bank details, disbursal form, SLA docs.
+ Mark application as “Disbursal Ready”
+
+5. Finance & Fee Reconciliation
+ Review offline payments with receipts.
+ Reconcile agent-reported fees against branch/bank deposits.
+ Mark payment status (Pending / Verified / Reconciled).
+6. Reporting & Insights
+ Application report (by agent, region, status).
+ Fee collection report.
+ Rejection analytics, TAT dashboards.
+7. Audit & Compliance
+ Full audit logs for all actions (approval, edits, login).
+ Document version history.
+ Secure data handling and retention policies.
+8. Notification Management
+ SMS/Email/WhatsApp delivery for Applicant ID, sanctions, rejections, reminders.
+ Editable templates for communication.
+C. Backend, APIs & Integrations
+ Backend services for Agent App & Admin Portal.
+ Integration with Aadhaar/PAN KYC provider.
+ Integration with CIBIL and CRIF.
+ Integration with SMS/Email/WhatsApp (notification provider).
+ PDF generation engine (Sanction Letter).
+ Automated reminder scheduler (EMI reminders).
+ Encrypted document storage (Aadhaar, PAN, SLA docs, disbursal forms).
+ API security, rate limiting, role-based access control.
+D. Deployment & Support
+ Cloud hosting setup for staging & production.
+ CI/CD pipeline configuration.
+ Testing (QA/UAT support).
+ Admin & Agent training materials.
+ Go-live assistance & warranty support as per agreement.
+
+3.2 Out-of-Scope Items
+The following are NOT included in Phase 1:
+Loan Repayment / EMI Collection System
+ No online EMI payment gateway.
+ No UPI/NACH/eNACH auto-debit setup.
+ No customer payment portal or ledger system.
+Customer Mobile App
+ Only agent-facing mobile app included.
+ No direct customer login.
+Automated Disbursal via Bank APIs
+ Funds disbursal is offline and handled manually.
+ No integration with bank disbursal APIs.
+OCR / Automated Document Reading
+ No automatic extraction of text from Aadhaar, PAN, bank statements, or income documents.
+AI/ML Underwriting
+ No machine learning scoring or predictive risk engine.
+Collections & Recovery Module
+ Only EMI reminders included.
+ No delinquency tracking, field collections app, or payment follow-up module.
+Multi-Tenant SaaS Version
+ Single institution deployment only
+
+3.3 Assumptions
+Business Assumptions
+ Non-refundable application fee is collected offline (cash or branch deposit).
+ Agents perform disbursal meetings physically with customers.
+ Loan disbursal amounts handled outside the system (Phase 1).
+Technical Assumptions
+ Client will provide credentials & sandbox access for:
+o Aadhaar/PAN KYC provider
+o CIBIL & CRIF APIs
+o SMS/Email/WhatsApp services
+ Document upload size limits and retention policies will be provided by the client.
+ Mobile app supports latest OS + 2 previous versions.
+Project Assumptions
+ Client team will provide timely approvals and feedback for designs and UAT.
+ SLA templates, sanction letter template, and disbursal form format will be provided by the client.
+ Notifications (SMS/Email/WhatsApp) costs are borne by the client directly.
+3.4 Constraints
+Regulatory Constraints
+ Compliance with RBI KYC norms and credit bureau usage rules.
+ Aadhaar handling must follow UIDAI guidelines (masking, encryption, no unauthorized storage).
+Technical Constraints
+ App must support low bandwidth environments.
+ Document uploads depend on network conditions.
+ Bureau API response times are variable and outside system control.
+Operational Constraints
+ Offline fee collection depends on manual reconciliation by finance.
+ Agent training is required to ensure proper data entry since there is no OCR automation
+
+
+34
+
+Automatic Zoom
+ 
+8. Deliverables to Client  
+The following key deliverables will be provided to the client as part of this project: 
+1. Agent Mobile Applications (Android & iOS) 
+ Fully functional agent-only mobile app 
+ Customer onboarding & loan application workflow 
+ KYC, credit check, fee recording, EMI calculator 
+ Offline support + sync functionality 
+ App build files (APK/IPA/TestFlight deployment) 
+2. Admin Web Application 
+ Complete admin portal for operations, underwriting, finance & compliance 
+ Application review, verification & approval workflows 
+ Loan ID generation & document management 
+ Fee reconciliation dashboards & reporting tools 
+ Role-based access control setup 
+3. Backend Services & Integrations 
+ API layer for mobile & web 
+ Integration with Aadhaar eKYC, PAN verification, CIBIL/CRIF credit bureaus 
+ Notification engine for SMS/Email/WhatsApp 
+ PDF generation engine (loan agreements, consents, receipts) 
+4. Infrastructure Setup 
+ Cloud deployment (staging & production) 
+ Secure storage, authentication, logging, audit trails 
+ Database & backup configuration 
+5. Documentation 
+ Technical documentation (API specs, architecture diagrams) 
+ User manuals for Agents & Admins 
+ Setup guides and configuration notes 
+6. Testing & Quality Assurance 
+ Test cases, UAT support, QA results 
+ Bug fixes and stabilization prior to go-live 
+ 
+ 
+7. Go-Live & Post-Launch Support 
+ Production deployment 
+ Warranty support (as per agreement) 
+ Training sessions for admin/agent teams 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+9. Acceptance Criteria  
+The project will be considered successfully delivered when the following acceptance criteria are met: 
+1. Agent Mobile App Functionality 
+ Agents can register, log in, and operate the app smoothly (online/offline). 
+ Agents can complete and submit loan applications with all required fields, documents, and KYC details. 
+ Aadhaar eKYC, PAN verification, and Credit Bureau checks (CIBIL/CRIF) function reliably. 
+ Application submission generates an Applicant ID and syncs to the admin portal. 
+ EMI calculator, fee recording, and document uploads operate with expected accuracy. 
+2. Admin Web Portal Functionality 
+ Admins can view, verify, approve, or reject applications end-to-end. 
+ Loan approval successfully converts Applicant ID → Loan ID and auto-generates loan documents. 
+ Payment/fee records are visible and reconcilable. 
+ Notification templates (SMS/Email/WhatsApp) send correctly for submissions, approvals, and 
+reminders. 
+ All admin modules (agents, applications, documents, reports) function as per specification. 
+3. Integrations & Backend 
+ Aadhaar eKYC, PAN verification, CIBIL & CRIF integrations return valid results with audit logs. 
+ Backend APIs operate within defined performance limits and are secure (encrypted, authenticated). 
+ PDF generation (consent, loan agreement, receipts) is accurate and delivered to customer channels. 
+4. Quality, Security & Compliance 
+ All critical paths pass UAT test cases with zero high-severity defects. 
+ No PII leakage; Aadhaar/PAN masking and encryption meet compliance rules. 
+ Audit log captures all major actions (agent submissions, admin approvals, document changes). 
+5. Deployment & Support 
+ Staging and Production environments are deployed, tested, and stable. 
+ Client receives required documentation, training, and knowledge transfer. 
+ Warranty/support period begins after client’s formal sign-off. 
+ 
+ 
+ 
+10. Project Plan & Milestones  
+Phase / Milestone Activities Included Expected 
+Duration 
+Deliverables 
+1. Project Kickoff & 
+Requirement 
+Finalization 
+Stakeholder meetings, requirement 
+clarification, scope confirmation, technical 
+discussion, integration requirement 
+collection 
+ Final BRD, SRS, 
+Project Charter 
+2. UI/UX Design Wireframes for Agent App & Admin Web, 
+user flows, high-fidelity screens, design 
+approval cycle 
+ Approved UI/UX 
+Screens & Clickable 
+Prototype 
+3. Backend 
+Architecture & Setup 
+Database design, API structure, KYC/credit 
+integration planning, environment setup 
+(dev/staging) 
+ Architecture 
+Document, Dev 
+Environment Ready 
+4. Agent Mobile App – 
+Core Module 
+Development 
+Login, registration, dashboard, draft 
+application flow, offline sync structure 
+ Mobile App Core 
+Module (Alpha Build) 
+5. Agent Mobile App – 
+Application Workflow 
+Development 
+Customer onboarding steps, document 
+upload, consent, KYC, credit check, fee 
+recording, EMI calculator 
+ End-to-End Agent 
+Application Workflow 
+(Beta Build) 
+6. Agent Web 
+Application 
+Login, registration, dashboard, draft 
+application flow, offline sync structure 
+ Web Application 
+7. Admin Web Portal – 
+Phase 1 Development 
+Login/RBAC, dashboard, application 
+queue, detailed view, document verification 
+ Admin Portal Core 
+(Beta Build) 
+8. Admin Web Portal – 
+Phase 2 Development 
+Underwriting tools, approval workflow, 
+Applicant ID → Loan ID conversion, fee 
+reconciliation 
+ Fully Functional 
+Admin Portal 
+9. Integrations 
+Development 
+Aadhaar eKYC, PAN verification, 
+CIBIL/CRIF APIs, SMS/Email/WhatsApp 
+notifications, PDF generator 
+ Integrated & Tested 
+External Services 
+ 
+10. QA, Testing & 
+Bug Fixing 
+Functional testing for agent & admin, 
+integration tests, load tests, security checks, 
+UAT support 
+ UAT-ready builds & 
+Test Reports 
+11. User Acceptance 
+Testing (UAT) 
+Client-side testing, feedback cycles, minor 
+change requests, functional validation 
+ UAT Sign-off 
+12. Deployment 
+(Staging & 
+Production) 
+Staging deployment, final checks, 
+production deployment, data initialization 
+ Live System (Agent 
+App + Admin Portal) 
+13. Training & 
+Handover 
+Admin training, agent training materials, 
+knowledge transfer, documentation delivery 
+ Training Sessions & 
+Documentation 
+ 
+Total Estimated Timeline:  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+11. Cost Analysis  Cost Category Estimated Cost (₹ / $) 
+1. UI/UX Design ₹  
+2. Agent Mobile App Development (Android + iOS) ₹  
+3. Agent Web Application  
+4. Admin Web Portal Development ₹  
+5. Backend API & Database Development ₹  
+6. Third-Party Integrations ₹   
+7. PDF Generation System ₹  
+8. Notification Engine ₹  
+9. DevOps, Cloud Setup & Deployment ₹  
+10. QA & Testing ₹  
+11. Project Management ₹  
+12. Training & Handover ₹  
+Total Estimated Project Cost: ₹   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Payment Terms   
+The payment will be divided into the following milestones: 
+1. 30% upfront: Before starting the project. 
+2. 20% on Design approval: After design finalization. 
+3. 35% on mid of development: Post-integration of backend and frontend. 
+4. 15% on delivery: On final testing and go-live. 
+ 
+Important Notes:  
+ The exact speed of design& development will be affected by client turnaround times, for example 
+responding to designs, how much feedback is given etc.  
+ Services are supplied according to our terms and conditions: The above estimate is based ONLY on the 
+features which we listed in this document. 
+ If you need any other feature (NOT listed in this doc) then the Time Estimate and cost may ramp up. It 
+may also vary after sharing your response on the queries being asked in this document. 
+ Any delay in reviewing and approving work, providing APIs, or responding to queries will result in 
+pushing the project deadline and extending the overall project timeline. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+12. Change Request  
+Any modifications to the approved scope, features, timelines, or deliverables will follow a formal Change 
+Request (CR) process. A CR will be raised when new requirements emerge, existing features need 
+enhancement, or third-party dependencies change. Each Change Request will include: 
+ Description of requested change 
+ Reason for change 
+ Impact analysis on cost, timeline, and resources 
+ Updated effort estimate 
+ Approval from client stakeholders 
+No change will be implemented without written confirmation from the client. Approved changes will be added 
+as separate deliverables or milestones, and billed accordingly. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+13. Maintenance & Support Plan 
+ 
+We provide 3 months of complimentary maintenance and support post-launch. This includes bug fixes, 
+performance optimizations, and minor feature adjustments. Any additional support or major feature updates will 
+be available at an additional cost based on the scope of the request. 
+Our maintenance and support plan ensures smooth operation, system stability, and ongoing updates to meet 
+evolving business needs. It includes: 
+ 
+ Bug Fixing: Rapid resolution of critical and non-critical issues. 
+ Performance Monitoring: Real-time system health checks and optimization. 
+ Security Updates: Regular patches to address vulnerabilities and enhance system safety. 
+ Feature Enhancements: Periodic updates and new feature rollouts based on client feedback. 
+ 24/7 Technical Support: Dedicated team available for troubleshooting and assistance. 
+ 
+Support Tier Services Included Monthly Cost (₹) 
+Basic Support Bug fixes, security updates, and performance 
+monitoring 
+ 
+Standard Support Basic Support + minor feature enhancements  
+Premium Support Standard Support + 24/7 technical support and priority 
+fixes 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Conclusion 
+The proposed Loan Application Platform — consisting of a field-focused Agent Mobile Application and a 
+robust Admin Web Portal — is designed to digitally transform the client’s lending operations. By streamlining 
+customer onboarding, KYC verification, credit evaluation, fee recording, and loan approval processes, the 
+solution empowers the organization to scale efficiently across Tier 1, Tier 2, and small-city markets. 
+This platform not only reduces operational bottlenecks and manual errors but also enhances compliance, audit 
+readiness, transparency, and customer satisfaction. With strong foundations in security, scalability, and modern 
+technology, the system positions the client as a forward-thinking, digitally enabled lending institution. 
+Through clear workflows, role-based controls, automation, and seamless integrations, the platform delivers 
+faster turnaround times and higher-quality loan decisions while strengthening agent productivity and overall 
+operational efficiency. The project sets the stage for future expansion — including online repayment, customer 
+self-service, automated underwriting, and advanced analytics. 
+By adopting this solution, the client invests in long-term operational resilience, competitive differentiation, and 
+improved financial performance. The result is a modern, scalable, and customer-centric lending ecosystem 
+ready to support growth today and innovation tomorrow. 
+ 
+ 
+ 
